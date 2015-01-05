@@ -1,7 +1,7 @@
 Asset Async Load
 ================
 
-JQuery plugin that helps you load the sources of elements async to the page load by using a few data attributes.
+JQuery plugin that loads the sources of elements async to the page load by using a few data attributes.
 
 __Attributes__
 - [data-asset-async-background-image] for background images
