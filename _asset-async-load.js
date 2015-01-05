@@ -1,5 +1,5 @@
 /**
- * Background cover image loader
+ * Asset Async Load
  *
  * Loads the sources of elements async to the page load.
  * Use the following attributes
@@ -61,5 +61,5 @@
 		_AssetAsyncLoad.start();
 	});
 
-	
+
 })();
