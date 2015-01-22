@@ -74,7 +74,7 @@
 
 			if (cleanString.indexOf('|') > 0) {
 				var sourceOptions = cleanString.split('|');
-				sourcesArray[sourceOptions[1]] = sourceOptions[0];
+				sourcesArray[sourceOptions[1].trim()] = sourceOptions[0];
 			} else if (cleanString !== '') {
 				sourcesArray['default'] = cleanString;
 			}
