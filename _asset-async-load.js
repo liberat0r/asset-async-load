@@ -109,16 +109,23 @@
 			}
 		}
 
-		var responsiveSourceProperty = Number.MAX_VALUE; // Init to the largest possible number
+		var responsiveSourceProperty = 0; // Number.MAX_VALUE Init to the largest possible number
 		var responsiveSource = module.responsiveSourcesById[elementResponsiveId].default;
 
 		// Traverse responsive source options
 		for (var windowMaxWidth in module.responsiveSourcesById[elementResponsiveId]) {
 
 			// Check if this source should be used
+			//console.log(responsiveSourceProperty + ' < ' + windowMaxWidth + ' and ' + module.$window.width() + ' < ' + windowMaxWidth);
+			if (responsiveSourceProperty === 0) {
+				responsiveSourceProperty = responsiveSourceProperty;
+			}
+
 			if (windowMaxWidth !== 'default' &&
-				responsiveSourceProperty > windowMaxWidth &&
+				responsiveSourceProperty <= windowMaxWidth &&
 				module.$window.width() < windowMaxWidth) {
+
+				//console.log('this');
 
 				responsiveSourceProperty = windowMaxWidth;
 				responsiveSource = module.responsiveSourcesById[elementResponsiveId][responsiveSourceProperty];
@@ -215,5 +222,5 @@
 
 	};
 
-	
+
 });
