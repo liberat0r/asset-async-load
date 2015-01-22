@@ -64,7 +64,7 @@
 	// Return array of images from atrtibute string
 	module.getSourcesFromAttribute = function(attr) {
 
-		var sourcesObject = {};
+		var sourcesArray = [];
 		var stringsArray = attr.split(']');
 
 		for (var i = 0; i < stringsArray.length; i++) {
@@ -74,13 +74,13 @@
 
 			if (cleanString.indexOf('|') > 0) {
 				var sourceOptions = cleanString.split('|');
-				sourcesObject[sourceOptions[1]] = sourceOptions[0];
+				sourcesArray[sourceOptions[1]] = sourceOptions[0];
 			} else if (cleanString !== '') {
-				sourcesObject.default = cleanString;
+				sourcesArray['default'] = cleanString;
 			}
 		}
 
-		return sourcesObject;
+		return sourcesArray;
 	};
 
 	// Apply appropriate responsive source
@@ -110,25 +110,28 @@
 		}
 
 		var responsiveSourceProperty = 0; // Number.MAX_VALUE Init to the largest possible number
-		var responsiveSource = module.responsiveSourcesById[elementResponsiveId].default;
+		var responsiveSource = module.responsiveSourcesById[elementResponsiveId]['default'];
 
 		// Traverse responsive source options
 		for (var windowMaxWidth in module.responsiveSourcesById[elementResponsiveId]) {
 
-			// Check if this source should be used
-			//console.log(responsiveSourceProperty + ' < ' + windowMaxWidth + ' and ' + module.$window.width() + ' < ' + windowMaxWidth);
-			if (responsiveSourceProperty === 0) {
-				responsiveSourceProperty = responsiveSourceProperty;
-			}
+			if (windowMaxWidth !== 'default') {
 
-			if (windowMaxWidth !== 'default' &&
-				responsiveSourceProperty <= windowMaxWidth &&
-				module.$window.width() < windowMaxWidth) {
+				windowMaxWidth = parseInt(windowMaxWidth);
 
-				//console.log('this');
+				if (responsiveSourceProperty === 0) {
+					responsiveSourceProperty = windowMaxWidth;
+				}
 
-				responsiveSourceProperty = windowMaxWidth;
-				responsiveSource = module.responsiveSourcesById[elementResponsiveId][responsiveSourceProperty];
+				// Check if this source should be used
+				if (responsiveSourceProperty <= windowMaxWidth &&
+					module.$window.width() < windowMaxWidth) {
+
+					responsiveSourceProperty = windowMaxWidth;
+					responsiveSource = module.responsiveSourcesById[elementResponsiveId][responsiveSourceProperty];
+
+					break;
+				}
 			}
 		}
 

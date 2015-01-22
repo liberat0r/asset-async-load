@@ -3,7 +3,7 @@ Asset Async Load
 
 JQuery plugin that helps you load the sources of elements async to the page load by using data attributes. Also there is an option for loading responsive sources by setting all sources in the same attributes as follows:
 ```
-[IMAGE|MIN_WINDOW_WIDTH], [OTHER IMAGE|LARGER_MIN_WIDTH], [DEFAULT_IMAGE]
+[IMAGE|MIN_WINDOW_WIDTH], [OTHER IMAGE|OTHER_WINDOW_MIN_WIDTH], [DEFAULT_IMAGE]
 ```
 
 __Attributes__
